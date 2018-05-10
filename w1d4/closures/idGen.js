@@ -25,21 +25,21 @@
 
 
 
-function makeLoadedDie() {
-  var list = [5, 4, 6, 1, 6, 4, 2, 3, 3, 5];
-   var i = -1;
+// function makeLoadedDie() {
+//   var list = [5, 4, 6, 1, 6, 4, 2, 3, 3, 5];
+//    var i = -1;
 
-  return function() {
-    i += 1;
-    return list[i];
-  }
-}
+//   return function() {
+//     i += 1;
+//     return list[i];
+//   }
+// }
 
-var rollLoadedDie = makeLoadedDie();
+// var rollLoadedDie = makeLoadedDie();
 
-console.log(rollLoadedDie());  // 5
-console.log(rollLoadedDie());  // 4
-console.log(rollLoadedDie());  // 6
+// console.log(rollLoadedDie());  // 5
+// console.log(rollLoadedDie());  // 4
+// console.log(rollLoadedDie());  // 6
 
 // Added the variable i to makeLoadedDie to access the index
 // Start at -1 to access the first index !!! return next function
@@ -48,4 +48,28 @@ console.log(rollLoadedDie());  // 6
 // Create a function called makeLoadedDie() which returns a function
 // hat when called, seems to generate random numbers between 1
 // and 6, but in fact returns numbers in a row from a
+
+
+var countdownGenerator = function (x) {
+  var count = x;
+  return function() {
+    if (count > 0) {
+      console.log("T-minus", count, "...");
+    } else if (count === 0) {
+      console.log("Blast Off!");
+    } else {
+      console.log("Rockets already gone, BRUH!");
+    }
+    return count--;
+  };
+};
+
+
+var countdown = countdownGenerator(3);
+countdown(); // T-minus 3...
+countdown(); // T-minus 2...
+countdown(); // T-minus 1...
+countdown(); // Blast Off!
+countdown(); // Rockets already gone, bub!
+countdown(); // Rockets already gone, bub!
 // list.
